@@ -10,4 +10,5 @@ urlpatterns = [
     path('article/<int:pk>/delete', DeletePostView.as_view(), name="delete"),
     path('category/<str:cats>', CategoryView, name="category"),
     path('category-list/', CategoryListView, name="category-list"),
+
 ]
