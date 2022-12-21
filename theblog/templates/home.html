@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Fundacion Abrazar Tejiendo</h1>
+
+<ul>
+  {% for post in object_list  %}
+	  <li><a href="{% url 'article' post.pk %}">{{ post.title }}</a> 
+    - {{ post.author }}  
+    - {{ post.date }} |
+    <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
+
+    <br/>
+		{{ post.body|slice:200|safe }}...</li>
+  {% endfor %}
+  
+</ul>
+{% endblock %}

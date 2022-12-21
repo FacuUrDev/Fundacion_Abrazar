@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Comentario en post {% endblock %}
+{% block content %}
+
+<h1>Agregar comentario...</h1>
+{% if user.is_authenticated %}
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Agregar comentario</button>
+    </form>
+</div>
+{% else %}
+<p>Inicia sesion para comentar.</p>
+{% endif %}
+
+{% endblock %}

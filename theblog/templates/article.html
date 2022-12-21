@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ post.title}} | {{post.subtitle}} {% endblock %}
+
+{% block content %}
+<h3> Categoria  {{ post.category }}  </h3>
+<hr>
+<h2>{{ post.title }}</h2>
+<small> 
+  <strong> 
+    Posteado por: {{ post.author }} - Fecha:  {{ post.date }} 
+<!-- Editar y Borrar post
+    {% if user.is_authenticated %}
+      
+        <a href="{% url 'edit' post.pk %}"> Editar </a> - <a href="{% url 'delete' post.pk %}"> Borrar </a>
+      
+    {% endif %}
+  </strong>
+</small>
+-->
+
+<hr>
+<p>{{ post.body|safe }}</p>
+<hr>
+<h4>Comentarios..</h4>
+{% if not post.comments.all %}
+  Sin comentarios aun..<hr> 
+{% else %}
+  {% for comment in post.comments.all %}
+    <strong> {{ comment.name }} - {{ comment.date_added }} </strong>
+    <br/>
+    {{ comment.body }} 
+    <br/>
+    <hr>
+  {% endfor %} 
+{% endif %}
+
+
+<a href="{% url 'nuevo_comentario' post.pk %}">Agrega un comentario</a>
+
+<hr>
+<a href="{% url 'home' %}" class="btn btn-secondary">ATRAS</a>
+{% endblock %}

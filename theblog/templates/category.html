@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Nueva Categoria {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Agrega una Categoria</h1>
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Agrega una Categoria</button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

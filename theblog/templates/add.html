@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Nuevo Post {% endblock %}
+{% block content %}
+
+<h1>Nuevo Post</h1>
+{% if user.is_authenticated %}
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Postear</button>
+        </form>
+    </div>
+<script>
+  var name = "{{user.id}}";
+  document.getElementById("user").value = name;
+</script>
+{% else %}
+<p>Inicia sesion para postear.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if category_posts %}
+    <h1>{{ cats }}</h1>
+    <ul>
+    {% for post in category_posts %}
+        <li><a href="{% url 'article' post.pk %}">{{ post.title }}</a>
+              - {{ post.author }}  - {{ post.date }} 
+                             
+            <br/>
+        {{ post.body|slice:200|safe }}...</li>
+    {% endfor %}
+    
+    </ul>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+{% else %}
+    <h2>No existe tal categoria.</h2>
+{% endif %}
+{% endblock %}
